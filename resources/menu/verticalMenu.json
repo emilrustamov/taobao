@@ -1,0 +1,40 @@
+{
+  "menu": [
+    {
+      "url": "/admin",
+      "name": "Главная",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "admin"
+    },
+    {
+      "menuHeader": "Дизайн"
+    },
+    {
+      "name": "Макет",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": ["pages", "modules"],
+      "submenu": [
+        {
+          "url": "/admin/page-list",
+          "name": "Страницы",
+          "slug": "pages"
+        },
+        {
+          "url": "/admin/module-list",
+          "name": "Модули",
+          "slug": "modules"
+        },
+        {
+          "url": "/layouts/container",
+          "name": "Container",
+          "slug": "layouts-container"
+        },
+        {
+          "url": "/layouts/fluid",
+          "name": "Fluid",
+          "slug": "layouts-fluid"
+        }
+      ]
+    }
+  ]
+}

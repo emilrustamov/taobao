@@ -1,0 +1,45 @@
+.main-banner-btn {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    z-index: 2;
+}
+
+.orange-btn {
+    background-color: #FF5000 !important;
+    color: white !important;
+    box-shadow: 0 0.125rem 0.25rem 0 #ff510046;
+}
+
+.orange-btn:hover {
+    transform: translateY(-1px);
+}
+
+.red-btn {
+    background-color: #FF4441 !important;
+    color: white !important;
+    box-shadow: 0 0.125rem 0.25rem 0 #FF500046;
+}
+.red-btn:hover  {
+    transform: translateY(-1px);
+}
+
+
+
+.primary-gradient {
+    background: linear-gradient(90deg, #FF6D2A 24.72%, #FF3914 73.96%);
+}
+
+.black-btn {
+    border-radius: 0.9375rem;
+    background: #111 !important;
+    border-color: #111;
+    color: white;
+    display: inline-flex;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(31, 31, 34, 0.4);
+}
+
+.black-btn:hover {
+    transform: translateY(-1px);
+    color: white;
+}

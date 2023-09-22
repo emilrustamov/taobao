@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.orange-gradient {
+   background-image: linear-gradient(90deg, #FF6D2A, #FF3914);
+}
+.pink-gradient {
+    background-image: linear-gradient(180deg, #FFD6D9, #fde9e9);
+}
+
+.whc {
+    color: white;
+}
+.red {
+    color:#FF3914 !important;
+}
+.green {
+    color:green !important;
+}
+.h3 {
+    color: #111;
+    font-family: Inter;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.0625rem;
+    /* 150% */
+}
+
+.h4 {
+    color: #111;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.75rem;
+    margin: 10px 0px;
+}
+
+.h5  {
+    color: #111;
+    font-size: 0.9375rem !important;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.75rem;
+    margin: 10px 0px;
+}
+
+.product-title {
+    color: #111;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.product-price {
+    color: #FF3914;
+    font-family: Montserrat;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+}
+
+.product-category {
+    color: #757575;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+}
+
+.header {
+    color: #111;
+    font-family: Montserrat;
+    font-size: 0.6875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 0.875rem;
+    /* 127.273% */
+}
+
+.logo-red {
+    color: #FF3914;
+    font-size: 1.125rem !important;
+    font-weight: 700;
+    line-height: 1.625rem;
+    text-transform: uppercase;
+}
+
+.thin-text {
+    color: #8D8D8D;
+    font-family: Montserrat;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem;
+}
+.bold {
+    font-weight: 700 !important;
+}
