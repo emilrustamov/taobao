@@ -7,14 +7,30 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/guide/style.css') }}">
 @endsection --}}
 
+@php
+$dbh = new PDO('mysql:dbname=shops;host=localhost', 'root', '');
+
+// Получение записей для первой страницы
+$sth = $dbh->prepare("SELECT * FROM `product_view` LIMIT 4");
+$sth->execute();
+$items = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 
+$sth1 = $dbh->prepare("SELECT * FROM `product_view`");
+$sth1->execute();
+$items1 = $sth1->fetchAll(PDO::FETCH_ASSOC);
+
+// Кол-во страниц
+$sth = $dbh->prepare("SELECT COUNT(`id`) FROM `product`");
+$sth->execute();
+$total = $sth->fetch(PDO::FETCH_COLUMN);
+
+$amt = ceil($total / 4);
+@endphp
 
 
 @section('content')
-@php
-$products = [['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'],['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png'], ['title' => 'Платье', 'price' => '₹ 3 895', 'category' => 'Women s Shoes', 'sale' => '-32%', 'img' => '/crossy.png']];
-@endphp
+
 @php
 $instaposts = [['comment' => 'Топ магаз, вещи как будто из Америки', 'img' => '/review-boy.svg'], ['comment' => 'Хлопок лучше, чем Алтын Асыр', 'img' => '/review-boy.svg'], ['comment' => 'Я хоть и негр, но люблю стильно одеваться и этот магазин меня спасает', 'img' => '/review-boy.svg']];
 @endphp
@@ -45,53 +61,74 @@ $instaposts = [['comment' => 'Топ магаз, вещи как будто из
             <div class="top-sale my-3">
                 <h2 class="my-3">Топ продаж</h2>
                 <section class="regular slider">
-                    @foreach ($products as $product)
+                    @foreach ($items1 as $row)
                     <div class="top-item item p-3">
-                        <img src="{{ asset('assets/img/banners/' . $product['img']) }}" alt="bg-img" />
+                    <img src="assets/<?php echo $row['img']; ?>" alt="" class="img-fluid">
                         <div class="d-flex justify-content-between">
-                            <div class="product-title">{{ $product['title'] }}</div>
-                            <div class="product-price">{{ $product['price'] }}</div>
+                            <div class="product-title">{{ $row['product_name'] }}</div>
+                            <div class="product-price">{{ $row['price']."TMT" }}</div>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <div class="product-category">{{ $product['category'] }}</div>
-                            <div class="product-sale">{{ $product['sale'] }}</div>
+                            <div class="product-category">{{ $row['category_name'] }}</div>
+                            <div class="product-sale">30%</div>
                         </div>
                     </div>
                     @endforeach
                 </section>
             </div>
 
-            <div class="row">
-                @foreach ($products as $product)
-                <div class="col-lg-3 content-block">
-                    <img src="{{ asset('assets/img/banners/' . $product['img']) }}" alt="bg-img" class="img-fluid " />
-                    <div class="d-flex justify-content-between">
-                        <div class="product-title">{{ $product['title'] }}</div>
-                        <div class="product-price">{{ $product['price'] }}</div>
+            <div id="showmore-list">
+                <div class="prod-list row">
+                    @foreach ($items as $row)
+                    <div class="col-lg-3 col-xs-6 col-6">
+                        <img src="assets/<?php echo $row['img']; ?>" alt="" class="img-fluid">
+                        <div class="d-flex justify-content-between">
+                            <div class="product-title">{{ $row['product_name'] }}</div>
+                            <div class="product-price">{{ $row['price']."TMT" }}</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="product-category">{{ $row['category_name'] }}</div>
+                            <div class="product-sale">30%</div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="product-category">{{ $product['category'] }}</div>
-                        <div class="product-sale">{{ $product['sale'] }}</div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
-                <a href="#" class="text-center " id="loadMore">Загрузить еще</a>
-                <script>
-                    $(document).ready(function() {
-                        $(".content-block").slice(0, 4).show();
-                        $("#loadMore").on("click", function(e) {
-                            e.preventDefault();
-                            $(".content-block:hidden").slice(0, 4).slideDown();
-                            if ($(".content-block:hidden").length == 0) {
-                                $("#loadMore").text("К сожалению, лента товаров закончилась((").addClass("noContent");
+            </div>
+            <div class="showmore-bottom">
+                <a data-page="1" data-max="<?php echo $amt; ?>" id="showmore-button" href="#">Показать еще</a>
+            </div>
+
+            <script>
+                $(function() {
+                    console.log("1");
+                    $('#showmore-button').click(function() {
+                        var $target = $(this);
+                        var page = $target.attr('data-page');
+                        page++;
+                        console.log("2");
+
+                        $.ajax({
+                            url: 'ajax.php?page=' + page,
+                            dataType: 'html',
+
+                            success: function(data) {
+                                console.log("3"),
+                                    $('#showmore-list .prod-list').append(data);
                             }
                         });
 
-                    })
-                </script>
-            </div>
+                        $target.attr('data-page', page);
+                        if (page == $target.attr('data-max')) {
+                            $target.hide();
+                        }
+
+                        return false;
+                    });
+                });
+            </script>
 
         </div>
+
 
         <div class="col-lg-3 col-md-3 col-sm-12  my-3">
             <div class="test">

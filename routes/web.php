@@ -54,6 +54,9 @@ Route::get('/order', function(){
 Route::get('/onecategory', function(){
     return view('shop.onecategory');
 });
+Route::get('/cabinet', function(){
+    return view('shop.cabinet');
+});
 
 // Admin - Page
 Route::get('/admin/page-list', function(){

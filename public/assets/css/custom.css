@@ -50,6 +50,7 @@ html {
 .aside-menu {
     position: relative;
     background-color: #FF3C151A;
+    di
 }
 
 .bottom-logo {
@@ -203,7 +204,7 @@ html {
 .accordion-button:not(.collapsed) {
     background-color: transparent !important;
 }
-.aside-sub {
+#aside-sub {
     position: absolute; 
     visibility:hidden;
     left: 100%;
@@ -453,6 +454,7 @@ header {
     width: 100%;
     z-index: 9999999999;
     background-color: #ffd6d9a3;
+    display: none;
 }
 
 @media (max-width: 768px) {

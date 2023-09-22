@@ -68,9 +68,7 @@ $menuLinks = [
 
 
 <body>
-
-
-  <div class="row">
+  <div class="row h-100">
     <!-- <div class="col-lg-1 col-2 aside-menu p-0"> -->
     <div id="mob-side-menu" class="d-none">
       <span id="mob-side-menu-close">X</span>
@@ -89,20 +87,20 @@ $menuLinks = [
       </ul>
     </div>
     <div class="col-sm-1 col-lg-1 col-2 aside-menu" id="aside-menu">
-    <div class="aside-menu d-none" id="aside-sub" style="position:absolute; ">
-      <ul class="pt-3 p-0 menu-links">
-        @foreach ($menuLinks as $menuLink)
-        <li><a href="{{ $menuLink['link'] }}">
-            <div>
-              <img src="{{ asset('assets/img/icons/menu/' . $menuLink['iconSrc']) }}">
-            </div>
-            <div class="d-none d-xl-block">
-              {{ $menuLink['title'] }}
-            </div>
-          </a>
-        </li>
-        @endforeach
-      </ul>
+      <div class="aside-menu d-none" id="aside-sub" style="position:absolute; ">
+        <ul class="pt-3 p-0 menu-links">
+          @foreach ($menuLinks as $menuLink)
+          <li><a href="{{ $menuLink['link'] }}">
+              <div>
+                <img src="{{ asset('assets/img/icons/menu/' . $menuLink['iconSrc']) }}">
+              </div>
+              <div class="d-none d-xl-block">
+                {{ $menuLink['title'] }}
+              </div>
+            </a>
+          </li>
+          @endforeach
+        </ul>
       </div>
       <ul class="pt-3 p-0 menu-links">
         @foreach ($menuLinks as $menuLink)
