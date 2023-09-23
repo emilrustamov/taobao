@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Июл 21 2023 г., 12:01
+-- Время создания: Сен 23 2023 г., 05:25
 -- Версия сервера: 10.4.27-MariaDB
 -- Версия PHP: 8.2.0
 
@@ -52,7 +52,7 @@ INSERT INTO `category` (`id`, `category_name`, `updated_at`, `created_at`) VALUE
 CREATE TABLE `module` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `code` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`code`)),
+  `code` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `status` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
@@ -115,6 +115,7 @@ CREATE TABLE `product` (
   `category_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -123,13 +124,38 @@ CREATE TABLE `product` (
 -- Дамп данных таблицы `product`
 --
 
-INSERT INTO `product` (`id`, `category_id`, `product_name`, `price`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Iphone Script5', 1599, '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
-(2, 1, 'Samsumg PHP++', 1299, '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
-(3, 2, 'Диско чайник', 250, '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
-(4, 2, 'Белый стул', 100, '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
-(5, 3, '\"Найди меня\" на андроид', 20, '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
-(6, 3, '\"Великая улитка\" на Iphone', 30, '2023-06-26 21:06:48', '2023-06-26 21:06:48');
+INSERT INTO `product` (`id`, `category_id`, `product_name`, `price`, `img`, `updated_at`, `created_at`) VALUES
+(1, 1, 'Iphone Script5', 1599, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(2, 1, 'Samsumg PHP++', 1299, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(3, 2, 'Диско чайник', 250, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(4, 2, 'Белый стул', 100, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(5, 3, '\"Найди меня\" на андроид', 20, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(6, 3, 'Акула Исмаила неживая', 0, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48'),
+(13, 3, '\"Акула Исмаила\" живая', 300, 'img/banners/crossy.png', '2023-06-26 21:06:48', '2023-06-26 21:06:48');
+
+-- --------------------------------------------------------
+
+--
+-- Дублирующая структура для представления `product_view`
+-- (См. Ниже фактическое представление)
+--
+CREATE TABLE `product_view` (
+`category_id` int(11)
+,`category_name` varchar(255)
+,`product_name` varchar(255)
+,`price` int(11)
+,`img` varchar(255)
+,`product_id` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Структура для представления `product_view`
+--
+DROP TABLE IF EXISTS `product_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `product_view`  AS SELECT `product`.`category_id` AS `category_id`, `category`.`category_name` AS `category_name`, `product`.`product_name` AS `product_name`, `product`.`price` AS `price`, `product`.`img` AS `img`, `product`.`id` AS `product_id` FROM (`product` join `category` on(`product`.`category_id` = `category`.`id`))  ;
 
 --
 -- Индексы сохранённых таблиц
@@ -197,7 +223,7 @@ ALTER TABLE `page-content`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
